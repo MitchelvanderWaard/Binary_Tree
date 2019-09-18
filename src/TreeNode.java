@@ -1,23 +1,32 @@
 public class TreeNode {
-    int val;
+    //creating a node with a possible neighbor node
+    int value;
     TreeNode left;
     TreeNode rigth;
+
+    //sets its value
     public TreeNode(int i){
-        val = i;
+        value = i;
     }
+
+    //this function makes it possible to add more nodes to an existing tree
     public void addNode(int i){
+        //tracks which node is the node we are on and which is its parent
         TreeNode current = this;
-        TreeNode parrent = this;
+        TreeNode parent = this;
+
+        //finds the spot for the new node
         while(current != null) {
-            if (i > current.val) {
-                parrent = current;
+            if (i > current.value) {
+                parent = current;
                 current = current.rigth;
-            } else if (i < current.val) {
-                parrent = current;
+            } else if (i < current.value) {
+                parent = current;
                 current = current.left;
             }
         }
-        if (i > parrent.val) parrent.rigth = new TreeNode(i);
-        else if (i < parrent.val) parrent.left = new TreeNode(i);
+        //add the node to the right side of the parent
+        if (i > parent.value) parent.rigth = new TreeNode(i);
+        else if (i < parent.value) parent.left = new TreeNode(i);
     }
 }
